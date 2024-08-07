@@ -13,7 +13,8 @@ export default function BookBar() {
   return (
   <div
     style={{
-      display: 'flex'
+      display: 'flex',
+      alignItems: 'center'
     }}
   >
     <Button

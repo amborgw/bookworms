@@ -1,15 +1,16 @@
-package backend.app.src.main.java.bookworms;
+package bookworms;
 
 import java.util.*;
-import backend.app.src.main.java.bookworms.books.*;
+import bookworms.books.*;
 
 public class User {
+    private String id;
     private String username;
     private String email;
     private String name;
     private String password;
-    private List<String> tokens;
-    private List<ReadBook> readBooks;
+    private List<Token> tokens;
+    private List<previouslyReadBook> previouslyReadBooks;
     private List<CurrentlyReadingBook> currentlyReadingBooks;
     private List<ToBeReadBook> toBeReadBooks;
 
@@ -21,14 +22,15 @@ public class User {
     }
 
     // called when user info from database needs to be retrieved
-    public User(String username, String email, String name, String password, List<ReadBook> readBooks, List<CurrentlyReadingBook> currentlyReadingBooks, List<ToBeReadBook> toBeReadBooks) {
+    public User(String id, String username, String email, String name, String password, List<previouslyReadBook> readBooks, List<CurrentlyReadingBook> currentlyReadingBooks, List<ToBeReadBook> toBeReadBooks) {
+        this.id = id;
         this.username = username; 
         this.email = email;
         this.name = name;
         this.password = password;
         
-        for (ReadBook book : readBooks) {
-            this.readBooks.add(book);
+        for (previouslyReadBook book : readBooks) {
+            this.previouslyReadBooks.add(book);
         }
 
         for (CurrentlyReadingBook book : currentlyReadingBooks) {
@@ -40,11 +42,11 @@ public class User {
         }
     }
 
-    public List<String> getTokens() {
+    public List<Token> getTokens() {
         return tokens;
     }
 
-    public void addToken(String token) {
+    public void addToken(Token token) {
         this.tokens.add(token);
     }
 
@@ -76,12 +78,12 @@ public class User {
         this.password = password;
     }
 
-    public List<ReadBook> getReadBooks() {
-        return readBooks;
+    public List<previouslyReadBook> getReadBooks() {
+        return previouslyReadBooks;
     }
 
-    public void setReadBooks(List<ReadBook> readBooks) {
-        this.readBooks = readBooks;
+    public void setReadBooks(List<previouslyReadBook> readBooks) {
+        this.previouslyReadBooks = readBooks;
     }
 
     public List<CurrentlyReadingBook> getCurrentlyReadingBooks() {

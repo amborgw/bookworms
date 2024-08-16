@@ -1,4 +1,4 @@
-package backend.app.src.main.java.bookworms;
+package bookworms;
 
 public class Auth {
 
@@ -22,6 +22,8 @@ public class Auth {
      */
     public String userLogin(String username, String password) {
 
+        // 
+        
         // verify username and password
 
         // create new user instance and extract info from database
@@ -53,6 +55,13 @@ public class Auth {
      * @param newPassword
      */
     public void passwordReset(String resetCode, String newPassword) {
+
+    }
+
+    /**
+     * Deletes user's account (might need to mve to user object? not sure yet)
+     */
+    public void userDeleteAccount() {
 
     }
 
@@ -94,7 +103,7 @@ public class Auth {
     }
 
     /**
-     * Returns a unique tokem
+     * Returns a unique token
      * @return token
      */
     public String generateToken() {

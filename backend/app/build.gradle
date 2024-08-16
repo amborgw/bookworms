@@ -22,6 +22,9 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:30.1.1-jre'
+
+    // Jackson Databind for ObjectMapper
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.0' 
 }
 
 application {

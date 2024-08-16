@@ -1,13 +1,15 @@
-package backend.app.src.main.java.bookworms.books;
+package bookworms.books;
 
 public abstract class Book {
+    private String id;
     private String title;
     private String author;
     private int isbn;
     private String publishedDate;
     private String description;
 
-    public Book(String title, String author, int isbn, String publishedDate, String description) {
+    public Book(String id, String title, String author, int isbn, String publishedDate, String description) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.isbn = isbn;

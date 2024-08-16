@@ -8,6 +8,7 @@ public class User {
     private String email;
     private String name;
     private String password;
+    private List<String> tokens;
     private List<ReadBook> readBooks;
     private List<CurrentlyReadingBook> currentlyReadingBooks;
     private List<ToBeReadBook> toBeReadBooks;
@@ -22,6 +23,7 @@ public class User {
     // called when user info from database needs to be retrieved
     public User(String username, String email, String name, String password, List<ReadBook> readBooks, List<CurrentlyReadingBook> currentlyReadingBooks, List<ToBeReadBook> toBeReadBooks) {
         this.username = username; 
+        this.email = email;
         this.name = name;
         this.password = password;
         
@@ -36,6 +38,14 @@ public class User {
         for (ToBeReadBook book : toBeReadBooks) {
             this.toBeReadBooks.add(book);
         }
+    }
+
+    public List<String> getTokens() {
+        return tokens;
+    }
+
+    public void addToken(String token) {
+        this.tokens.add(token);
     }
 
     public String getUsername() {

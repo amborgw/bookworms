@@ -21,7 +21,22 @@ public class Auth {
      * @return token
      */
     public String userLogin(String username, String password) {
+
+        // verify username and password
+
+        // create new user instance and extract info from database
+
+        // generate token and store hashed token in user instance
+
         return "";
+    }
+
+    /**
+     * Given a user token, invalidates it, preventing user from accessing system
+     * @param token
+     */
+    public void userLogout(String token) {
+        
     }
 
     /**

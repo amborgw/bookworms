@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 // import { Button, Image } from "react-native";
 
 export default function LogoButton() {
@@ -8,6 +8,8 @@ export default function LogoButton() {
   }
 
   return (
-    <img src={"../assets/images/worm.png"} alt="Bookworm icon" style={worm}/>
+    <Pressable>
+      <img src={"../assets/images/worm.png"} alt="Bookworm icon" style={worm}/>
+    </Pressable>
   );
 }

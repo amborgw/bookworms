@@ -11,25 +11,25 @@ export default function BookBar() {
   }
 
   return (
-  <div
-    style={{
-      display: 'flex',
-      alignItems: 'center'
-    }}
-  >
-    <Button
-      icon={
-          <Icon name='search' ></Icon>
-      }
-      onPress={handlePress}
-      buttonStyle={{
-        backgroundColor: 'transparent'
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center'
       }}
     >
-        <TouchableOpacityComponent>
-        </TouchableOpacityComponent>
-    </Button>
-    {visible && <Search />}
-  </div>
+      <Button
+        icon={
+            <Icon name='search' ></Icon>
+        }
+        onPress={handlePress}
+        buttonStyle={{
+          backgroundColor: 'transparent'
+        }}
+      >
+          <TouchableOpacityComponent>
+          </TouchableOpacityComponent>
+      </Button>
+      {visible && <Search />}
+    </div>
   );
 }

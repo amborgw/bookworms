@@ -28,9 +28,9 @@ export default function RootLayout() {
     return null;
   }
 
-  const handleClick = () => {
+  // const handleClick = () => {
 
-  }
+  // }
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
@@ -51,6 +51,6 @@ export default function RootLayout() {
         <Stack.Screen name="Bookworms" />
         <Stack.Screen name="+not-found" />
       </Stack>
-    </ThemeProvider>
+    // </ThemeProvider>
   );
 }

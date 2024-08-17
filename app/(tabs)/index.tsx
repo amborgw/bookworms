@@ -1,4 +1,5 @@
 import { Image, StyleSheet, Platform } from 'react-native';
+import { Text } from 'react-native-elements';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -46,8 +47,44 @@ export default function HomeScreen() {
     //       <ThemedText type="defaultSemiBold">app-example</ThemedText>.
     //     </ThemedText>
     //   </ThemedView>
-    // </ParallaxScrollView>
-    <div>Hello</div>
+    // </ParallaxScrollView><
+  
+    <ThemedView
+      style={{
+        height: '100vh'
+      }}
+    >
+      <div
+        className='currentContainer'
+        style={{
+          margin: '27px 24px',
+          paddingBottom: '10px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
+      >
+        <ThemedText
+          type='defaultExtraBold'
+          style={styles.text}
+        >
+          Current Reads
+        </ThemedText>
+        <div
+          style={{
+            width: '347px',
+            height: '524px',
+            borderRadius: '10px',
+            backgroundColor: '#F8F9FA',
+            padding: '32px',
+            margin: '10px 0px'
+          }}
+        >
+          yo
+        </div>
+      </div>
+    </ThemedView>
   );
 }
 
@@ -61,11 +98,5 @@ const styles = StyleSheet.create({
     gap: 8,
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
+
 });

@@ -16,7 +16,7 @@ export default function HomeScreen() {
   useEffect(() => {
     // Get the images for each book 
     setCurrReads(books)
-  }, [books])
+  }, [])
 
   return (
     <ThemedView
@@ -36,7 +36,8 @@ export default function HomeScreen() {
         </ThemedText>
           <div
             style={{
-              width: 347,
+              maxWidth: 347,
+              minWidth: 240,
               height: 524,
               borderRadius: '10px',
               backgroundColor: '#F8F9FA',
@@ -51,6 +52,9 @@ export default function HomeScreen() {
               </ThemedText>
             </Pressable>
           </div>
+          <ThemedText>
+            HELLO THERE
+          </ThemedText>
         </View>
     </ThemedView>
   );

@@ -1,5 +1,6 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-import { Text } from 'react-native-elements';
+import React, { useEffect, useState } from 'react';
+
+import { Image, StyleSheet, Platform, View, Pressable } from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
@@ -7,83 +8,50 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
 export default function HomeScreen() {
+  const books: string[] = [
+    'Book1'
+  ]
+  const [currReads, setCurrReads] = useState<string[]>([])
+
+  useEffect(() => {
+    // Get the images for each book 
+    setCurrReads(books)
+  }, [books])
+
   return (
-    // <ParallaxScrollView
-    //   headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-    //   headerImage={
-    //     <Image
-    //       source={require('@/assets/images/partial-react-logo.png')}
-    //       style={styles.reactLogo}
-    //     />
-    //   }>
-    //   <ThemedView style={styles.titleContainer}>
-    //     <ThemedText type="title">Welcome!</ThemedText>
-    //     <HelloWave />
-    //   </ThemedView>
-    //   <ThemedView style={styles.stepContainer}>
-    //     <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-    //     <ThemedText>
-    //       Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-    //       Press{' '}
-    //       <ThemedText type="defaultSemiBold">
-    //         {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-    //       </ThemedText>{' '}
-    //       to open developer tools.
-    //     </ThemedText>
-    //   </ThemedView>
-    //   <ThemedView style={styles.stepContainer}>
-    //     <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-    //     <ThemedText>
-    //       Tap the Explore tab to learn more about what's included in this starter app.
-    //     </ThemedText>
-    //   </ThemedView>
-    //   <ThemedView style={styles.stepContainer}>
-    //     <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-    //     <ThemedText>
-    //       When you're ready, run{' '}
-    //       <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-    //       <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-    //       <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-    //       <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-    //     </ThemedText>
-    //   </ThemedView>
-    // </ParallaxScrollView><
-  
     <ThemedView
       style={{
-        height: '100vh'
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
       }}
     >
-      <div
-        className='currentContainer'
-        style={{
-          margin: '27px 24px',
-          paddingBottom: '10px',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}
-      >
+      <View>
         <ThemedText
           type='defaultExtraBold'
           style={styles.text}
         >
           Current Reads
         </ThemedText>
-        <div
-          style={{
-            width: '347px',
-            height: '524px',
-            borderRadius: '10px',
-            backgroundColor: '#F8F9FA',
-            padding: '32px',
-            margin: '10px 0px'
-          }}
-        >
-          yo
-        </div>
-      </div>
+          <div
+            style={{
+              width: 347,
+              height: 524,
+              borderRadius: '10px',
+              backgroundColor: '#F8F9FA',
+              padding: '32px',
+              margin: '10px 0px'
+            }}
+            >
+              {currReads.map((book, index) => (<ThemedText key={index}>{book}</ThemedText>))}
+            <Pressable>
+              <ThemedText>
+                See more <span style={{ verticalAlign: '-1px' }}>{'\u2192'}</span>
+              </ThemedText>
+            </Pressable>
+          </div>
+        </View>
     </ThemedView>
   );
 }
@@ -98,5 +66,9 @@ const styles = StyleSheet.create({
     gap: 8,
     marginBottom: 8,
   },
-
+  text: {
+    marginTop: 27,
+    paddingBottom: 10,
+    alignSelf: 'baseline'
+  }
 });

@@ -1,6 +1,9 @@
 package bookworms;
 
 import java.util.Map;
+
+import org.json.JSONObject;
+
 import java.net.URI;
 import java.net.URLEncoder;
 import java.net.http.HttpClient;
@@ -47,7 +50,6 @@ public class PocketBaseClient {
         .GET()
         .build();
 
-        // TODO: reformat perhaps to be more friendly
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         return response.body();
     }
@@ -81,4 +83,41 @@ public class PocketBaseClient {
         }
 
     }
+
+    /**
+     * Authenticate a given user's details with database
+     * @param username
+     * @param password
+     * @return
+     * @throws Exception
+     */
+    public static JSONObject authenticateUser(String username, String password) throws Exception {
+        // Encode the username and password for the URL to handle special characters
+        JSONObject json = new JSONObject();
+        json.put("identity", username);  // Username
+        json.put("password", password);  // User's password
+
+        // Create the POST request to authenticate the user
+        String url = POCKETBASE_URL + "/api/collections/users/auth-with-password";
+
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .header("Content-Type", "application/json")
+            .POST(HttpRequest.BodyPublishers.ofString(json.toString(), StandardCharsets.UTF_8))
+            .build();
+
+        // Send the request and get the response
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        // Check the response status code
+        if (response.statusCode() < 200 || response.statusCode() >= 300) {
+            // Handle login failure
+            throw new HttpException(400, "Password is not valid");
+        } else {
+            // Parse the successful response
+            JSONObject responseBody = new JSONObject(response.body());
+            return responseBody; // Return user info and token
+        }
+    }
+
 }

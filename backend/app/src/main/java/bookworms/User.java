@@ -8,26 +8,26 @@ public class User {
     private String username;
     private String email;
     private String name;
-    private String password;
-    private List<Token> tokens;
+    private List<String> tokens = new ArrayList<>();
     private List<previouslyReadBook> previouslyReadBooks;
     private List<CurrentlyReadingBook> currentlyReadingBooks;
     private List<ToBeReadBook> toBeReadBooks;
 
     // called when new user is created (to store in database)
-    public User(String username, String name, String password) {
-        this.username = username; 
-        this.name = name;
-        this.password = password;
-    }
-
-    // called when user info from database needs to be retrieved
-    public User(String id, String username, String email, String name, String password, List<previouslyReadBook> readBooks, List<CurrentlyReadingBook> currentlyReadingBooks, List<ToBeReadBook> toBeReadBooks) {
+    public User(String id, String username, String email, String name, String token) {
         this.id = id;
         this.username = username; 
         this.email = email;
         this.name = name;
-        this.password = password;
+        this.tokens.add(token);
+    }
+
+    // called when user info from database needs to be retrieved
+    public User(String id, String username, String email, String name, List<previouslyReadBook> readBooks, List<CurrentlyReadingBook> currentlyReadingBooks, List<ToBeReadBook> toBeReadBooks) {
+        this.id = id;
+        this.username = username; 
+        this.email = email;
+        this.name = name;
         
         for (previouslyReadBook book : readBooks) {
             this.previouslyReadBooks.add(book);
@@ -42,11 +42,11 @@ public class User {
         }
     }
 
-    public List<Token> getTokens() {
+    public List<String> getTokens() {
         return tokens;
     }
 
-    public void addToken(Token token) {
+    public void addToken(String token) {
         this.tokens.add(token);
     }
 
@@ -68,14 +68,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public List<previouslyReadBook> getReadBooks() {

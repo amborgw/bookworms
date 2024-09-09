@@ -1,6 +1,10 @@
 package bookworms;
 
-import java.util.Map;
+import java.util.*;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 
 public class Auth {
 
@@ -22,14 +26,24 @@ public class Auth {
      * @param password
      * @return token
      */
-    public String userLogin(String username, String password) throws Exception {
-        // verify username and password
+    public static User userLogin(String username, String password) throws Exception {
+        if (!isUsernameValid(username)) {
+            throw new HttpException(400, "Username is not valid");
+        }
+        
+        // verify password 
+        JSONObject responseBody = PocketBaseClient.authenticateUser(username, password);
+        
+        // extract details from database to create user instance
+        String token = responseBody.getString("token");
+        JSONObject record = responseBody.getJSONObject("record");
+        String id = record.getString("id");
+        String email = record.getString("email");
+        String name = record.getString("name");
 
-        // create new user instance and extract info from database
+        // TODO: get their books
 
-        // generate token and store hashed token in user instance
-
-        return "";
+        return new User(id, username, email, name, token);
     }
 
     /**
@@ -120,8 +134,28 @@ public class Auth {
         // );
 
         // System.out.println(PocketBaseClient.createRecord("users", d));
+        System.out.println(userLogin("john_doe", "12345678"));
+    }
 
-        System.out.println(PocketBaseClient.getUserRecord("john_doe"));
+    // HELPER FUCTIONS
+
+    /**
+     * Checks if given username matches any in database
+     * @param username
+     * @return
+     * @throws Exception
+     */
+    private static boolean isUsernameValid(String username) throws Exception {
+        String data = PocketBaseClient.getUserRecord(username);
         
+        // verify username 
+        JSONObject jsonObject = new JSONObject(data);
+        JSONArray items = jsonObject.getJSONArray("items");
+        if (items.isEmpty()) {
+            return false;
+        }
+
+        return true;
     }
 }
+

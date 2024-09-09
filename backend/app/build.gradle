@@ -25,6 +25,9 @@ dependencies {
 
     // Jackson Databind for ObjectMapper
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.0' 
+
+    // JSON
+    implementation 'org.json:json:20230227' 
 }
 
 application {

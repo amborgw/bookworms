@@ -1,5 +1,7 @@
 package bookworms;
 
+import java.util.Map;
+
 public class Auth {
 
     /**
@@ -20,10 +22,7 @@ public class Auth {
      * @param password
      * @return token
      */
-    public String userLogin(String username, String password) {
-
-        // 
-        
+    public String userLogin(String username, String password) throws Exception {
         // verify username and password
 
         // create new user instance and extract info from database
@@ -108,5 +107,21 @@ public class Auth {
      */
     public String generateToken() {
         return "";
+    }
+
+    public static void main(String[] args) throws Exception {
+        // Map<String, String> d = Map.of(
+        //     "username", "john_doe",
+        //     "email", "john.doe@example.com",
+        //     "emailVisibility", "true",
+        //     "password", "12345678",
+        //     "passwordConfirm", "12345678",
+        //     "name", "test"
+        // );
+
+        // System.out.println(PocketBaseClient.createRecord("users", d));
+
+        System.out.println(PocketBaseClient.getUserRecord("john_doe"));
+        
     }
 }
